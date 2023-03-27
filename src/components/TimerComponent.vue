@@ -37,12 +37,12 @@ export default {
   methods: {
     startTimer() {
       if (!this.stopwatch.running) {
-        this.stopwatch.intervalId = requestAnimationFrame(this.tick);
+        this.stopwatch.intervalId = setInterval(this.tick, 1000);
         this.stopwatch.running = true;
       }
     },
     pauseTimer() {
-      cancelAnimationFrame(this.stopwatch.intervalId);
+      clearInterval(this.stopwatch.intervalId);
       this.stopwatch.running = false;
     },
     stopTimer() {
@@ -69,7 +69,6 @@ export default {
     },
     tick() {
       this.stopwatch.time += 1;
-      this.stopwatch.intervalId = requestAnimationFrame(this.tick);
     },
   },
   computed: {
